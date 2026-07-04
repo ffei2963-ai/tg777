@@ -11,6 +11,8 @@
 | **修改 2FA** | `02_change_2fa.py` | `python main.py 2fa <旧> <新> [ids]` | 批量修改两步验证密码 |
 | **修改名字** | `03_change_name.py` | `python main.py name <名字> [ids]` | 批量改 First Name / Last Name |
 | **修改头像** | `04_change_avatar.py` | `python main.py avatar <图片> [ids]` | 批量更换头像 |
+| **批量进群** | `05_batch_join.py` | `python main.py join <链接> [ids]` | 通过链接批量加入群组 (带延时) |
+| **退出群组** | `06_batch_leave.py` | `python main.py leave [ids]` | 一键退出账号的全部群组 |
 
 ## 项目结构
 
@@ -21,6 +23,8 @@ tg777/
 ├── 02_change_2fa.py            # 操作2: 修改2FA密码
 ├── 03_change_name.py           # 操作3: 修改显示名字
 ├── 04_change_avatar.py         # 操作4: 修改头像
+├── 05_batch_join.py            # 操作5: 批量链接进群
+├── 06_batch_leave.py           # 操作6: 一键退出全部群组
 ├── README.md                   # 本文档
 ├── requirements.txt            # Python 依赖
 ├── lib/
@@ -92,6 +96,15 @@ python main.py avatar photo.jpg 9 10 11
 
    python main.py name "Mary" --last "" 10
    → [10] Aspen → Mary ✅
+
+6. 批量进群 (带延时)
+   python main.py join "https://t.me/+t2D7VX2fkB4xNThh" 9 10 11 --delay 0.5
+   → 9→0.5s→10→0.5s→11, 全部加入 ✅
+
+7. 一键退出全部群组
+   python main.py leave 9 10 11
+   → 9: 宝宝巴士✅ 测试✅ | 10: 宝宝巴士✅ 测试✅ | 11: 宝宝巴士✅ 测试✅
+   → 总计退出 6 个群组
 
 5. 修改头像
    python main.py avatar photo1.jpg 9

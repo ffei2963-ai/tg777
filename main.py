@@ -9,6 +9,8 @@ tg777 - Telegram 账号云控操作工具
     python main.py 2fa <旧密码> <新密码> [账号ID...]
     python main.py name <新名字> [账号ID...]
     python main.py avatar <图片文件> [账号ID...]
+    python main.py join <链接> [账号ID...] [--delay 0.5]
+    python main.py leave [账号ID...] [--delay 0.3]
     python main.py list
     python main.py show
 """
@@ -25,13 +27,17 @@ def usage():
     print("  2fa <old> <new> [ids] 修改 2FA 密码")
     print("  name <first> [ids]    修改名字 (--last <姓>)")
     print("  avatar <img> [ids]    修改头像")
+    print("  join <link> [ids]     批量进群 (--delay 秒)")
+    print("  leave [ids]           一键退出全部群组 (--delay 秒)")
     print("  list                  列出所有账号")
     print("  show                  显示当前真实名字")
     print("\n示例:")
     print("  python main.py import accounts.zip")
     print("  python main.py 2fa 0369 112211 9 10 11")
-    print("  python main.py name ZhangNing --last '' 9 11")
+    print("  python main.py name ZhangNing 9 11")
     print("  python main.py avatar photo.jpg 10")
+    print("  python main.py join https://t.me/+hash 9 10 11 --delay 0.5")
+    print("  python main.py leave 9 10 11")
 
 
 def main():
@@ -72,6 +78,19 @@ def main():
             return
         import _04_change_avatar as m
         sys.argv = ["04"] + args
+        m.main()
+
+    elif cmd == "join":
+        if not args:
+            print("用法: python main.py join <链接> [ids] [--delay 0.5]")
+            return
+        import _05_batch_join as m
+        sys.argv = ["05"] + args
+        m.main()
+
+    elif cmd == "leave":
+        import _06_batch_leave as m
+        sys.argv = ["06"] + args
         m.main()
 
     elif cmd == "list":
