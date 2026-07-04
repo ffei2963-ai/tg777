@@ -9,8 +9,8 @@ tg777 - Telegram 账号云控操作工具
     python main.py 2fa <旧密码> <新密码> [账号ID...]
     python main.py name <新名字> [账号ID...]
     python main.py avatar <图片文件> [账号ID...]
-    python main.py join <链接> [账号ID...] [--delay 0.5]
-    python main.py leave [账号ID...] [--delay 0.3]
+    python main.py join <链接> [账号ID...] [--min 0.8] [--max 3.5]
+    python main.py leave [账号ID...] [--min 0.3] [--max 1.5]
     python main.py list
     python main.py show
 """

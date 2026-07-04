@@ -1,16 +1,21 @@
-"""Telethon 辅助函数 - 统一的账号连接和操作接口"""
+"""Telethon 辅助函数"""
 
 import os
 import asyncio
+import random
 from telethon import TelegramClient
 
 DEFAULT_API_ID = 6
 DEFAULT_API_HASH = "eb06d4abfb49dc3eeb1aeb98ae0f581e"
 
 
+def human_delay(min_sec: float = 0.8, max_sec: float = 3.5) -> float:
+    """拟人随机延时 (默认 0.8~3.5 秒)"""
+    return round(random.uniform(min_sec, max_sec), 2)
+
+
 def connect_account(session_path: str, phone: str, password: str = "",
                     api_id: int = DEFAULT_API_ID, api_hash: str = DEFAULT_API_HASH):
-    """连接并认证一个 Telegram 账号，返回 client 对象"""
     session_name = os.path.splitext(session_path)[0]
     client = TelegramClient(session_name, api_id, api_hash)
 
@@ -23,7 +28,6 @@ def connect_account(session_path: str, phone: str, password: str = "",
 
 
 def get_me(session_path: str):
-    """获取账号信息"""
     client = TelegramClient(os.path.splitext(session_path)[0], DEFAULT_API_ID, DEFAULT_API_HASH)
 
     async def _do():
